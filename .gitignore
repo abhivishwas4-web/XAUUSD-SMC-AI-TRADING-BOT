@@ -1,0 +1,21 @@
+.gitignore
+
+.env
+__pycache__/
+.vscode/
+.env.local
+data/cache/
+.pytest_cache/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Logs
+*.log
