@@ -1,26 +1,10 @@
+# Stage 5 configuration
 
-technical:
-  atr:
-    period: 14
-  regime:
-    high_volatility_atr_pct: 0.008
-    low_volatility_atr_pct: 0.002
-    trending_consistency: 3
-    range_price_ratio: 0.02
-session:
-  timezone: UTC
-  asian:
-    start: '00:00'
-    end: '08:00'
-  london:
-    start: '07:00'
-    end: '15:00'
-  newyork:
-    start: '12:00'
-    end: '20:00'
-  quality:
-    LONDON: HIGH
-    NEW_YORK: HIGH
-    LONDON_NEW_YORK_OVERLAP: HIGH
-    ASIAN: MEDIUM
-    OUTSIDE_MAJOR_SESSION: LOW
+risk:
+  minimum_rr: 2.0
+  preferred_rr: 3.0
+  risk_percent: 0.5
+  atr_sl_buffer_multiplier: 0.5
+  entry_retest_tolerance:
+    price_pct: 0.002
+  position_sizing_enabled: true
