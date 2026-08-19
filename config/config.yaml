@@ -1,13 +1,26 @@
-# Configuration additions for SMC engine
 
-smc:
-  swing:
-    left: 2
-    right: 2
-  liquidity:
-    equal_tolerance: 0.001
-  displacement:
-    atr_multiplier: 1.5
-    lookback: 20
-  fvg:
-    min_size: 0.1
+technical:
+  atr:
+    period: 14
+  regime:
+    high_volatility_atr_pct: 0.008
+    low_volatility_atr_pct: 0.002
+    trending_consistency: 3
+    range_price_ratio: 0.02
+session:
+  timezone: UTC
+  asian:
+    start: '00:00'
+    end: '08:00'
+  london:
+    start: '07:00'
+    end: '15:00'
+  newyork:
+    start: '12:00'
+    end: '20:00'
+  quality:
+    LONDON: HIGH
+    NEW_YORK: HIGH
+    LONDON_NEW_YORK_OVERLAP: HIGH
+    ASIAN: MEDIUM
+    OUTSIDE_MAJOR_SESSION: LOW
