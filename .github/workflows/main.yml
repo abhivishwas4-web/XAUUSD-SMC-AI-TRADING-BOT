@@ -1,1 +1,75 @@
 
+name: CI - Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Run test suite
+    runs-on: ubuntu-latest
+    env:
+      TELEGRAM_BOT_TOKEN: test_token
+      TELEGRAM_CHAT_ID: test_chat_id
+      TWELVE_DATA_API_KEY: test_api_key
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Upgrade pip
+        run: python -m pip install --upgrade pip
+
+      - name: Install dependencies
+        run: |
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          else
+            echo 'No requirements.txt found, installing pytest only'
+            pip install pytest
+          fi
+
+      - name: Compile check
+        run: |
+          python -m compileall src run.py
+
+      - name: Run tests
+        id: run-tests
+        run: |
+          set -o pipefail
+          pytest -v | tee pytest_v.txt
+
+      - name: Security / env sanity check
+        run: |
+          # Ensure .env is ignored
+          if ! grep -qxF '.env' .gitignore 2>/dev/null; then
+            echo '.env must be present in .gitignore' >&2
+            exit 1
+          fi
+
+          # .env.example must exist and reference expected keys
+          if [ ! -f .env.example ]; then
+            echo '.env.example missing' >&2
+            exit 1
+          fi
+
+          # Check .env.example contains the expected placeholders (not real secrets)
+          # Ensure TELEGRAM_BOT_TOKEN and TWELVE_DATA_API_KEY are present in .env.example
+          if ! grep -q 'TELEGRAM_BOT_TOKEN' .env.example; then
+            echo 'TELEGRAM_BOT_TOKEN not declared in .env.example' >&2
+            exit 1
+          fi
+          if ! grep -q 'TWELVE_DATA_API_KEY' .env.example; then
+            echo 'TWELVE_DATA_API_KEY not declared in .env.example' >&2
+            exit 1
+          fi
+
+          # Heuristic se
