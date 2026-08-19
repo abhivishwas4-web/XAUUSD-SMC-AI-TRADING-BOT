@@ -1,44 +1,13 @@
-config/config.yaml
+# Configuration additions for SMC engine
 
-provider: twelvedata
-symbol: XAU/USD
-symbol_aliases:
-  XAUUSD: "XAU/USD"
-
-timeframes:
-  4H:
-    ttl_minutes: 240
-    output_size: 100
-  1H:
-    ttl_minutes: 60
-    output_size: 120
-  15M:
-    ttl_minutes: 15
-    output_size: 150
-  5M:
-    ttl_minutes: 5
-    output_size: 150
-  1M:
-    ttl_minutes: 0   # on-demand only
-    output_size: 200
-
-cache:
-  path: data/cache
-  max_age_minutes: 720
-
-api_budget:
-  daily_api_budget: 700
-  safety_reserve: 100
-  per_minute_limit: 5
-
-analysis:
-  minimum_setup_score: 80
-  minimum_rr: 2.0
-  preferred_rr: 3.0
-  risk_percent: 0.5
-
-session:
-  timezone: UTC
-
-telegram:
-  rate_limit_per_minute: 6
+smc:
+  swing:
+    left: 2
+    right: 2
+  liquidity:
+    equal_tolerance: 0.001
+  displacement:
+    atr_multiplier: 1.5
+    lookback: 20
+  fvg:
+    min_size: 0.1
