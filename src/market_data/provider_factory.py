@@ -1,5 +1,3 @@
-src/market_data/provider_factory.py
-
 from src.market_data.interface import MarketDataProvider
 
 

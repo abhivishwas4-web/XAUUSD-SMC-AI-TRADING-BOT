@@ -1,5 +1,3 @@
-src/market_data/symbol_mapper.py
-
 from typing import Dict
 
 

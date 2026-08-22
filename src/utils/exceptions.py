@@ -1,5 +1,3 @@
-src/utils/exceptions.py
-
 class DataError(Exception):
     pass
 

@@ -1,5 +1,3 @@
-run.py
-
 from src.utils.config import load_config
 
 if __name__ == "__main__":

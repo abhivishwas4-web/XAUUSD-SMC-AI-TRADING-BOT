@@ -1,5 +1,3 @@
-src/market_data/interface.py
-
 from abc import ABC, abstractmethod
 from typing import List, Dict, Any
 

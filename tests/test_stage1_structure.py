@@ -1,5 +1,3 @@
-tests/test_stage1_structure.py
-
 import pytest
 from src.market_data.symbol_mapper import map_symbol
 from src.utils.config import load_config
