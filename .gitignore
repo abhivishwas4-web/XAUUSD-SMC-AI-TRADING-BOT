@@ -1,5 +1,3 @@
-.gitignore
-
 .env
 __pycache__/
 .vscode/
@@ -19,3 +17,10 @@ dist/
 
 # Logs
 *.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~

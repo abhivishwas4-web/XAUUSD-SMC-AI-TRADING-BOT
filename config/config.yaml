@@ -1,5 +1,70 @@
-# Stage 5 configuration
+# XAUUSD-SMC-AI-TRADING-BOT V1 Configuration
 
+provider: twelvedata
+symbol: XAUUSD
+
+# Market data provider configuration
+market_data:
+  provider: twelvedata
+  timeout_seconds: 10
+
+# Timeframes and data freshness
+timeframes:
+  4H:
+    ttl_minutes: 240
+    output_size: 100
+  1H:
+    ttl_minutes: 60
+    output_size: 120
+  15M:
+    ttl_minutes: 15
+    output_size: 150
+  5M:
+    ttl_minutes: 5
+    output_size: 150
+  1M:
+    ttl_minutes: 1
+    output_size: 150
+
+# API budget management (optimized for free Twelve Data plan)
+api_budget:
+  daily_api_budget: 700
+  safety_reserve: 100
+  per_minute_limit: 8
+
+# Cache configuration
+cache:
+  path: data/cache
+  default_max_age_minutes: 720
+
+# SMC engine configuration
+smc:
+  swing:
+    left: 2
+    right: 2
+  liquidity:
+    equal_tolerance: 0.001
+  displacement:
+    atr_multiplier: 1.5
+    lookback: 20
+  fvg:
+    min_size: 0.1
+
+# Technical analysis configuration
+technical:
+  atr:
+    period: 14
+  regime:
+    atr_threshold_low: 50
+    atr_threshold_high: 150
+
+# Analysis configuration
+analysis:
+  minimum_setup_score: 80
+  minimum_rr: 2.0
+  preferred_rr: 3.0
+
+# Risk/reward configuration
 risk:
   minimum_rr: 2.0
   preferred_rr: 3.0
@@ -8,3 +73,16 @@ risk:
   entry_retest_tolerance:
     price_pct: 0.002
   position_sizing_enabled: true
+
+# Session configuration
+session:
+  timezone: UTC
+  london_open: "08:00"
+  london_close: "17:00"
+  newyork_open: "13:00"
+  newyork_close: "22:00"
+
+# Telegram bot configuration
+telegram:
+  rate_limit_seconds: 2
+  max_retries: 3
